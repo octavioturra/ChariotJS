@@ -1,0 +1,23 @@
+{
+  "name": "ChariotJS",
+  "version": "0.1.0",
+  "private": false,
+  "scripts": {
+    "start": "nodemon -e js,css,less -x node -w ./controllers/* -w ./models/* -w ./public/scripts/* -w ./public/styles/* -w ./public/templates/* -w ./lib/* -w ./* index.js"
+  },
+  "dependencies": {
+    "express": "3.4.4",
+    "ejs": "*",
+    "less-middleware": "*",
+    "connect-flash": "~0.1.1",
+    "dependable": "~0.2.5",
+    "underscore": "~1.5.2",
+    "passport-local": "~0.1.6",
+    "ejs-locals": "~1.0.2",
+    "i18n": "~0.4.1",
+    "passport": "~0.1.18",
+    "mongoose": "~3.8.4",
+    "pubsub-js": "~1.4.0",
+    "deferred": "~0.6.8"
+  }
+}
