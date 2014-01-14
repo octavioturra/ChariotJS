@@ -18,6 +18,9 @@
     "passport": "~0.1.18",
     "mongoose": "~3.8.4",
     "pubsub-js": "~1.4.0",
-    "deferred": "~0.6.8"
+    "deferred": "~0.6.8",
+    "express-namespace": "~0.1.1",
+    "mongoose-validator": "~0.2.2",
+    "node-validator": "~0.1.1"
   }
 }
