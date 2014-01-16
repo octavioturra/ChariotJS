@@ -4,6 +4,7 @@ module.exports = function(passport, i18n){
 	, path = require('path')
 	, engine = require('ejs-locals')
 	, flash = require('connect-flash');
+	require('express-namespace');
 
 	var app = express();
 

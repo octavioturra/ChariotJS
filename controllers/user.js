@@ -1,8 +1,6 @@
 var validator = require('validator');
 
-module.exports = function(app, passport, result, UserModel){
-	var User = new UserModel();
-
+module.exports = function(app, passport, result, i18n, UserModel){
 	app.get('/login', function(req, res, next){
 		if(req.isAuthenticated()){
 			return res.redirect('/home');
@@ -11,18 +9,19 @@ module.exports = function(app, passport, result, UserModel){
 	});
 	app.post('/login', passport.authenticate('local', { 
 		successRedirect: '/',
-		failureRedirect: '/users/login',
+		failureRedirect: '/login',
+		failureMessage: i18n.__('Login ou senha Inválidos'),
 		failureFlash: true 
-	});
+	}));
 	//[Authenticate]
 	app.get('/logout', passport.validate, function(req, res, next){
 		req.logout();
 		res.redirect('/');
 	});
-	app.get('/sigin', function(req, res, next){
+	app.get('/signup', function(req, res, next){
 		res.render('users/signup');
 	});
-	app.post('/sigin', function(req, res, next){
+	app.post('/signup', function(req, res, next){
 		var name = req.param('name')
 		,email = req.param('email')
 		,password = req.param('password')
@@ -30,23 +29,25 @@ module.exports = function(app, passport, result, UserModel){
 		if(!name||!email||!password||!confirmation){
 			return res.send(result.error(10, 'Todos dados devem ser preenchidos.'));
 		}
-		if(validtaor.isEmail(email)===false){
+		if(validator.isEmail(email)===false){
 			return res.send(result.error(11, 'E-mail inválido.'));
 		}
 		if(password!=confirmation){
 			return res.send(result.error(12, 'Senha e confirmação não são iguais.'));
 		}
-		var user = new User({
+		var user = new UserModel({
 			name: name,
 			email: email,
 			password: password
 		});
-		try{
-			return res.send(result.ok(user._id));
-		}catch(e){
-			return res.send(result.error(13, e.message));
-		}
+		user.save(function(err, user){
+			if(err){
+				return res.send(result.error(13, err.message));
+			}
+			return res.send(result.success(user._id));
+		});
 	});
+	
 	//[Authenticate]
 	app.get('/signout', passport.validate, function(req, res, next){
 		res.render('users/signout');
@@ -56,7 +57,7 @@ module.exports = function(app, passport, result, UserModel){
 		var email = req.param('email')
 		,password = req.param('password');
 		
-		User.findOne({email:email, password:password}, function(err, user){
+		UserModel.findOne({email:email, password:password}, function(err, user){
 			if(err){
 				return res.send(result.error(20, 'Houve um erro ao consultar seu usuário'));
 			}
@@ -64,11 +65,15 @@ module.exports = function(app, passport, result, UserModel){
 				return res.send(result.error(21, 'Usuário inexistente ou password inválido'));
 			}
 			user.active = false;
-			try{
+			user.save(function(err, user){
+				if(err){
+					return res.send(result.error(22, err.message));
+				}
+				if(user.active){
+					return res.send(result.error(23, 'Usuário não foi desativado'));
+				}
 				return res.send(result.ok(user._id));
-			}catch(e){
-				return res.send(result.error(22, e.message));
-			}
+			})
 		})
 	});
 	app.get('/confirm/:confirmation', function(req, res, next){

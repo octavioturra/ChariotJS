@@ -13,6 +13,6 @@ container.load('./controllers/');
 
 container.register('app', require('./app'));
 
-container.resolve(function(index, app){
+container.resolve(function(index, user, validate, app){
 	app.start();
 });

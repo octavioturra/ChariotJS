@@ -1,0 +1,28 @@
+<% layout("../_layout.ejs") %>
+<div class="col-md-4 col-md-offset-4" data-ng-controller="loginController">
+	<form action="/login" role="form" method="post">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4>Acesse</h4>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input type="email" class="form-control" id="email" name="email" data-ng-model="data.email">
+				</div>
+				<div class="form-group" data-ng-hide="!data.email.length">
+					<label for="password">Senha</label>
+					<input type="password" class="form-control" id="password" name="password" data-ng-model="data.password">
+				</div>
+			</div>
+			<div class="panel-footer">
+				<a href="javascript:" class="btn btn-link">Esqueci minha senha</a>
+				<button class="btn btn-success" type="submit" data-ng-hide="!data.email.length||!data.password.length">Entrar</button>
+			</div>
+		</div>	
+	</form>
+</div>
+<script>
+	app.controller('loginController', function($scope, $http){
+	});
+</script>

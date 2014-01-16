@@ -2,10 +2,11 @@
 <html lang="pt-BR">
 <head>
 	<meta charset="UTF-8">
-	<title></title>
+	<title>ChariotJS</title>
 	
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.0.3/yeti/bootstrap.min.css">
 	<link rel="stylesheet" href="styles/style.css">
-	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 	
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
@@ -16,11 +17,25 @@
 		var app = angular.module('Chariot', []);
 	</script>
 </head>
-<body>
+<body ng-app="Chariot">
 	<nav class="navbar navbar-fixed-top navbar-default">
-		<a href="" class="navbar-brand"></a>
-		<ul class="nav navbar-nav">
-			
+		<a href="/" class="navbar-brand">
+			<span class="icon chariot"></span>
+			&nbsp;
+			Chariot<strong>Admin</strong>&trade;
+		</a>
+		<ul class="nav navbar-nav navbar-right">
+			<%if(!authenticated){%>
+				<li><a href="/signup"><%=__("Me cadastrar")%></a></li>
+				<li><a href="/login"><%=__("Entrar")%></a></li>
+			<%}else{%>
+				<li><a href="/logoff"><%=__("Sair")%></a></li>
+			<%}%>
+			<li>
+				&nbsp;
+				&nbsp;
+				&nbsp;
+			</li>
 		</ul>
 	</nav>
 	

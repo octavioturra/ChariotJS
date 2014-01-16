@@ -1,3 +1,11 @@
 {
-	"Welcome": "Bem vindo"
+	"Welcome": "Bem vindo",
+	"Sair": "Sair",
+	"Me cadastrar": "Me cadastrar",
+	"Entrar": "Entrar",
+	"Object #<Object> has no method 'ok'": "Object #<Object> has no method 'ok'",
+	"Login ou senha Inválidos": "Login ou senha Inválidos",
+	"Validation failed": "Validation failed",
+	"Senha e confirmação não são iguais.": "Senha e confirmação não são iguais.",
+	"E-mail existente na base": "E-mail existente na base"
 }

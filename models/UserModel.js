@@ -6,7 +6,6 @@ var UserModel = function(){
 		name : {type: String, 
 			required: true, 
 			validate: [
-				validate('isNull'), 
 				validate('len', 3, 150)
 			]
 		},
@@ -21,7 +20,7 @@ var UserModel = function(){
 			type: String, 
 			required: true, 
 			validate: [
-				validate('len', 7, 128)
+				validate('len', 6, 128)
 			]
 		},
 		active : {
