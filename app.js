@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(passport, i18n){
 	var express = require('express')
 	, http = require('http')
@@ -24,6 +26,10 @@ module.exports = function(passport, i18n){
 	app.use(express.session());
 	
 	app.use(flash());
+	app.use(function(req, res, next){
+		res.locals.message= res.locals.message||'';
+		next();
+	});
 	
 	app.use(passport.initialize());
 	app.use(passport.session());
@@ -33,8 +39,7 @@ module.exports = function(passport, i18n){
 	});
 	
 	app.use(i18n.init);
-	app.use(i18n.middleware);
-	
+			
 	app.use(app.router);
 	app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
 	app.use(express.static(path.join(__dirname, 'public')));
@@ -43,6 +48,8 @@ module.exports = function(passport, i18n){
 	if ('development' == app.get('env')) {
 	  app.use(express.errorHandler());
 	}
+
+	
 
 	app.start = function(){
 		http.createServer(app).listen(app.get('port'), function(){

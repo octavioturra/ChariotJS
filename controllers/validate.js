@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(app, passport, result, i18n, UserModel){
 	app.namespace('/validate', function(){
 		app.post('/email', function(req, res){

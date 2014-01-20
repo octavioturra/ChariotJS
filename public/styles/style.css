@@ -1,3 +1,10 @@
+body > .alert {
+  bottom: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: auto;
+}
 .chariot.icon {
   border-radius: 100%;
   border: 5px solid #f9f9f9;
@@ -32,8 +39,9 @@
   width: 1em;
   height: 1em;
 }
-.dot1,
-.dot2 {
+.spinner:before,
+.spinner:after {
+  content: "";
   width: 60%;
   height: 60%;
   display: inline-block;
@@ -44,7 +52,7 @@
   -webkit-animation: bounce 2s infinite ease-in-out;
   animation: bounce 2s infinite ease-in-out;
 }
-.dot2 {
+.spinner:after {
   top: auto;
   bottom: 0px;
   -webkit-animation-delay: -1s;
@@ -79,5 +87,71 @@
   50% {
     transform: scale(1);
     -webkit-transform: scale(1);
+  }
+}
+main {
+  width: 100%;
+  height: auto;
+  display: -webkit-flex;
+  display: flex;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 45px;
+}
+main > * {
+  -webkit-flex: auto auto 1;
+  flex: auto auto 1;
+}
+main > aside {
+  width: 300px;
+  background: #999;
+  border-right: 1px solid #666;
+}
+main > aside > .nav > li {
+  overflow: hidden;
+  background: #666;
+  border-bottom: 2px groove #999;
+}
+main > aside > .nav > li a {
+  color: #f9f9f9;
+}
+main > aside > .nav > li a:hover {
+  color: #fff;
+  background: #888;
+}
+main > aside > .nav > li a:active {
+  color: #eee;
+}
+main > aside > .nav > li a span {
+  margin-right: .5em;
+}
+main > div {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1em;
+}
+@media (max-width: 992px) {
+  main > aside {
+    width: 200px;
+  }
+}
+@media (max-width: 768px) {
+  main > aside {
+    width: 120px;
+  }
+  main > aside span {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  main > aside {
+    width: 40px;
+  }
+  main > aside > .nav > li {
+    height: 38px;
+  }
+  main > aside > .nav > li span {
+    width: 40px;
   }
 }

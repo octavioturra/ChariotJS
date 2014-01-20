@@ -3,9 +3,9 @@
 	"Sair": "Sair",
 	"Me cadastrar": "Me cadastrar",
 	"Entrar": "Entrar",
-	"Object #<Object> has no method 'ok'": "Object #<Object> has no method 'ok'",
+	"{0} has no method 'ok'": "{0} não tem um método 'ok'",
 	"Login ou senha Inválidos": "Login ou senha Inválidos",
-	"Validation failed": "Validation failed",
+	"Validation failed": "A validação falhou",
 	"Senha e confirmação não são iguais.": "Senha e confirmação não são iguais.",
 	"E-mail existente na base": "E-mail existente na base"
 }

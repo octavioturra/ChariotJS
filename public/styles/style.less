@@ -1,5 +1,11 @@
 body {
-  
+	&>.alert{
+		bottom:0;
+		position:absolute;
+		left:0;
+		right:0;
+		width:auto;
+	}
 }
 .chariot.icon{
   border-radius:100%;
@@ -38,7 +44,8 @@ body {
   height: 1em;
 }
 
-.dot1, .dot2 {
+.spinner:before, .spinner:after {
+  content: "";
   width: 60%;
   height: 60%;
   display: inline-block;
@@ -51,7 +58,7 @@ body {
   animation: bounce 2.0s infinite ease-in-out;
 }
 
-.dot2 {
+.spinner:after {
   top: auto;
   bottom: 0px;
   -webkit-animation-delay: -1.0s;
@@ -74,4 +81,77 @@ body {
     transform: scale(1.0);
     -webkit-transform: scale(1.0);
   }
+}
+
+main{
+    width:100%;    
+    height:auto;
+    display: -webkit-flex;
+    display: flex;
+    position:absolute;
+    left:0;
+	bottom:0;
+    top:45px;
+	&>*{
+		-webkit-flex:auto auto 1;
+		flex:auto auto 1;
+	}
+	&>aside{	
+		width:300px;
+		background:#999;
+		border-right:1px solid #666;
+		&>.nav>li{
+			overflow:hidden;
+			background:#666;
+			border-bottom:2px groove #999;
+			a{
+				color: #f9f9f9;
+				&:hover{
+					color: #fff;
+					background: #888;
+				}
+				&:active{
+					color: #eee;
+				}
+				span{
+					margin-right:.5em;
+				}
+			}
+		}
+	}
+	&>div{
+		width:100%;
+		box-sizing: border-box;
+		padding:1em;
+	}
+}
+@media (max-width: 992px){
+	main{
+		&>aside{
+			width: 200px;
+		}
+	}
+}
+@media (max-width: 768px){
+	main{
+		&>aside{
+			width: 120px; 
+			span{
+				display:none;
+			}
+		}
+	}
+}
+@media (max-width: 480px){
+	main{
+		&>aside{
+			width: 40px;
+			&>.nav>li{
+				height:38px;
+				span{
+					width:40px;
+				}
+			}
+		}
+	}
 }
